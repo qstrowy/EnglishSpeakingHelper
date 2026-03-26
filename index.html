@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A minimalist tool for solo 1-minute English speaking practice." />
+  <title>1‑Minute Speaking Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<div class="app-wrapper">
+
+  <!-- ── Header ─────────────────────────────────── -->
+  <header class="app-header">
+    <h1 class="app-title">Speaking Trainer</h1>
+    <p class="app-subtitle">1-minute spontaneous practice</p>
+    <span class="session-counter" id="sessionCounter" aria-label="Sessions completed">0 sessions</span>
+  </header>
+
+  <!-- ── Error / info message ───────────────────── -->
+  <div id="msgBox" role="alert" style="display:none;"></div>
+
+  <!-- ── Controls Panel ────────────────────────── -->
+  <section class="controls-panel" aria-label="Filters and settings">
+
+    <div class="control-group">
+      <label class="control-label" for="selectDiff">Difficulty</label>
+      <select id="selectDiff" aria-label="Select difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="selectType">Topic type</label>
+      <select id="selectType" aria-label="Select topic type">
+        <option value="all">All types</option>
+        <option value="opinion">Opinion</option>
+        <option value="description">Description</option>
+        <option value="story">Story</option>
+        <option value="comparison">Comparison</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="selectPrep">Prep time</label>
+      <select id="selectPrep" aria-label="Preparation timer duration">
+        <option value="30">30 sec</option>
+        <option value="45" selected>45 sec</option>
+        <option value="60">60 sec</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="selectSpeak">Speaking time</label>
+      <select id="selectSpeak" aria-label="Speaking timer duration">
+        <option value="60" selected>60 sec</option>
+        <option value="90">90 sec</option>
+        <option value="120">120 sec</option>
+      </select>
+    </div>
+
+  </section>
+
+  <!-- ── Auto-start toggle ─────────────────────── -->
+  <div class="auto-start-row">
+    <label class="toggle-label" for="toggleAutoStart">
+      Auto-start speaking after prep ends
+    </label>
+    <label class="toggle-switch">
+      <input type="checkbox" id="toggleAutoStart" aria-label="Auto-start speaking after prep" />
+      <span class="toggle-slider"></span>
+    </label>
+  </div>
+
+  <!-- ── Topic Card ─────────────────────────────── -->
+  <article class="topic-card" id="topicCard" aria-live="polite" aria-atomic="true">
+
+    <div class="topic-meta" id="topicMeta" aria-label="Topic metadata"></div>
+
+    <p class="topic-text" id="topicText"></p>
+
+    <div class="topic-empty" id="topicEmpty" aria-label="No topic loaded">
+      Press <strong>&ldquo;New topic&rdquo;</strong> to begin
+    </div>
+
+    <div class="structure-block" id="structureBlock" style="display:none;">
+      <p class="structure-label">Suggested structure</p>
+      <ol class="structure-steps" id="structureSteps"></ol>
+    </div>
+
+  </article>
+
+  <!-- ── Timer Area ─────────────────────────────── -->
+  <div class="timer-area state-idle" id="timerArea" role="timer" aria-live="off">
+    <p class="timer-mode-label" id="timerModeLabel"></p>
+    <div class="timer-display" id="timerDisplay">
+      <span class="timer-value">00:45</span><span class="timer-dot" aria-hidden="true"></span>
+    </div>
+    <div class="timer-progress-track" aria-hidden="true">
+      <div class="timer-progress-fill" id="timerProgress"></div>
+    </div>
+  </div>
+
+  <!-- ── Action Buttons ────────────────────────── -->
+  <div class="actions" role="group" aria-label="Actions">
+
+    <button class="btn btn-primary" id="btnNewTopic" aria-label="Draw a new random topic (N)">
+      <span class="btn-icon" aria-hidden="true">⟳</span> New topic
+    </button>
+
+    <button class="btn btn-secondary" id="btnStartPrep" disabled aria-label="Start preparation timer (P)">
+      <span class="btn-icon" aria-hidden="true">◷</span> Start prep
+    </button>
+
+    <button class="btn btn-secondary" id="btnStartSpeak" disabled aria-label="Start speaking timer (S)">
+      <span class="btn-icon" aria-hidden="true">▶</span> Start speaking
+    </button>
+
+    <button class="btn btn-ghost" id="btnRepeat" disabled aria-label="Repeat current topic (R)">
+      <span class="btn-icon" aria-hidden="true">↺</span> Repeat
+    </button>
+
+    <button class="btn btn-ghost" id="btnReset" disabled aria-label="Reset timer">
+      <span class="btn-icon" aria-hidden="true">⏹</span> Reset
+    </button>
+
+  </div>
+
+  <!-- ── Keyboard hints ────────────────────────── -->
+  <div class="keyboard-hints" aria-label="Keyboard shortcuts">
+    <span class="kbd-hint"><kbd>N</kbd> new topic</span>
+    <span class="kbd-hint"><kbd>Space</kbd> next step</span>
+    <span class="kbd-hint"><kbd>P</kbd> start prep</span>
+    <span class="kbd-hint"><kbd>S</kbd> start speaking</span>
+    <span class="kbd-hint"><kbd>R</kbd> repeat</span>
+  </div>
+
+</div><!-- /app-wrapper -->
+
+<script src="app.js"></script>
+</body>
+</html>
