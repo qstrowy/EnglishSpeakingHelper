@@ -20,6 +20,20 @@
     <span class="session-counter" id="sessionCounter" aria-label="Sessions completed">0 sessions</span>
   </header>
 
+  <details class="howto-panel">
+    <summary>How to use this practice</summary>
+    <ol class="howto-steps">
+      <li>Draw a topic</li>
+      <li>Use prep time to think of keywords, not full sentences</li>
+      <li>Speak for 1 minute</li>
+      <li>Notice where you got stuck</li>
+      <li>Repeat the same topic and speak again more clearly</li>
+    </ol>
+    <p class="howto-principle">
+      The goal is not to write a perfect answer. The goal is to organize your thoughts and speak more clearly each time.
+    </p>
+  </details>
+
   <!-- ── Error / info message ───────────────────── -->
   <div id="msgBox" role="alert" style="display:none;"></div>
 
@@ -93,6 +107,11 @@
       <ol class="structure-steps" id="structureSteps"></ol>
     </div>
 
+    <div class="prep-tip-block" id="prepTipBlock" style="display:none;">
+      <p class="prep-tip-label">Prep tip</p>
+      <p class="prep-tip-text" id="prepTipText"></p>
+    </div>
+
   </article>
 
   <!-- ── Timer Area ─────────────────────────────── -->
@@ -122,7 +141,7 @@
     </button>
 
     <button class="btn btn-ghost" id="btnRepeat" disabled aria-label="Repeat current topic (R)">
-      <span class="btn-icon" aria-hidden="true">↺</span> Repeat
+      <span class="btn-icon" aria-hidden="true">↺</span> Repeat topic
     </button>
 
     <button class="btn btn-ghost" id="btnReset" disabled aria-label="Reset timer">
@@ -132,6 +151,20 @@
   </div>
 
   <!-- ── Keyboard hints ────────────────────────── -->
+  <p class="repeat-hint" id="repeatHint" style="display:none;">
+    Best learning often happens on the second attempt.
+  </p>
+
+  <section class="reflection-box" id="reflectionBox" style="display:none;" aria-live="polite">
+    <p class="reflection-title">Reflect before retrying:</p>
+    <ul class="reflection-points">
+      <li>Where did you hesitate?</li>
+      <li>Which word or phrase was missing?</li>
+      <li>What can you say more clearly next time?</li>
+    </ul>
+    <p class="reflection-note">Try the same topic again using a clearer structure and better words.</p>
+  </section>
+
   <div class="keyboard-hints" aria-label="Keyboard shortcuts">
     <span class="kbd-hint"><kbd>N</kbd> new topic</span>
     <span class="kbd-hint"><kbd>Space</kbd> next step</span>

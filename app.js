@@ -161,6 +161,13 @@ const STRUCTURE_MAP = {
   ],
 };
 
+const PREP_TIPS = {
+  opinion: 'Think of 3 keywords. Choose one clear opinion. Do not write full sentences.',
+  description: 'Think of 3 keywords. Choose one specific example. Do not write full sentences.',
+  comparison: 'Think of 3 keywords. Choose the key difference. Do not write full sentences.',
+  story: 'Think of 3 keywords. Choose one specific event. Do not write full sentences.',
+};
+
 /* ══════════════════════════════════════════════════════════════
    5. TIMER ENGINE
 ══════════════════════════════════════════════════════════════ */
@@ -208,6 +215,8 @@ function cacheElements() {
   el.topicEmpty      = document.getElementById('topicEmpty');
   el.structureBlock  = document.getElementById('structureBlock');
   el.structureSteps  = document.getElementById('structureSteps');
+  el.prepTipBlock    = document.getElementById('prepTipBlock');
+  el.prepTipText     = document.getElementById('prepTipText');
 
   el.timerArea       = document.getElementById('timerArea');
   el.timerDisplay    = document.getElementById('timerDisplay');
@@ -225,6 +234,8 @@ function cacheElements() {
   el.btnStartSpeak   = document.getElementById('btnStartSpeak');
   el.btnRepeat       = document.getElementById('btnRepeat');
   el.btnReset        = document.getElementById('btnReset');
+  el.repeatHint      = document.getElementById('repeatHint');
+  el.reflectionBox   = document.getElementById('reflectionBox');
 
   el.sessionCounter  = document.getElementById('sessionCounter');
   el.msgBox          = document.getElementById('msgBox');
@@ -246,6 +257,8 @@ function renderTopic() {
     el.topicText.textContent   = '';
     el.topicEmpty.style.display = 'flex';
     el.structureBlock.style.display = 'none';
+    el.prepTipBlock.style.display = 'none';
+    el.prepTipText.textContent = '';
     return;
   }
 
@@ -258,6 +271,7 @@ function renderTopic() {
 
   el.topicText.textContent = t.text;
   renderStructure(t.type);
+  renderPrepTip(t.type);
 }
 
 function renderStructure(type) {
@@ -268,6 +282,17 @@ function renderStructure(type) {
     .map((s, i) => `<li><span class="step-num">0${i+1}</span><span>${s}</span></li>`)
     .join('');
   el.structureBlock.style.display = 'block';
+}
+
+function renderPrepTip(type) {
+  const tip = PREP_TIPS[type];
+  if (!tip) {
+    el.prepTipBlock.style.display = 'none';
+    el.prepTipText.textContent = '';
+    return;
+  }
+  el.prepTipText.textContent = tip;
+  el.prepTipBlock.style.display = 'block';
 }
 
 function renderTimerArea(remaining, total) {
@@ -309,15 +334,21 @@ function renderState() {
 
   // Button states
   const noTopic = !state.currentTopic;
+  const isFinished = s === STATES.FINISHED;
 
   el.btnStartPrep.disabled  = noTopic || s === STATES.PREP || s === STATES.SPEAKING;
   el.btnStartSpeak.disabled = noTopic || s === STATES.SPEAKING || s === STATES.PREP;
   el.btnRepeat.disabled     = noTopic || s === STATES.PREP || s === STATES.SPEAKING;
   el.btnReset.disabled      = s === STATES.IDLE && !state.currentTopic;
+  el.btnRepeat.innerHTML    = `<span class="btn-icon" aria-hidden="true">↺</span> ${isFinished ? 'Repeat topic (improve)' : 'Repeat topic'}`;
 
   // Show Start Speaking only if not auto-starting
   const showStartSpeak = !state.autoStart;
   el.btnStartSpeak.style.display = showStartSpeak ? '' : 'none';
+
+  // Lightweight guidance: emphasize second attempt and finished reflection
+  el.repeatHint.style.display = noTopic ? 'none' : '';
+  el.reflectionBox.style.display = isFinished ? '' : 'none';
 
   // Session counter
   el.sessionCounter.textContent = `${state.sessionCount} session${state.sessionCount !== 1 ? 's' : ''}`;

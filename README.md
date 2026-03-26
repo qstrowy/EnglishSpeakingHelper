@@ -9,8 +9,12 @@ A lightweight, minimalist web app for solo English speaking practice.
 - Draws a random topic from a local topic bank
 - Filters topics by difficulty (easy / medium / hard) and type (opinion / description / story / comparison)
 - Displays a 3-step suggested speaking structure tailored to the topic type
+- Shows a dynamic prep tip by topic type (keywords-first prep guidance)
 - Runs a configurable preparation timer (30 / 45 / 60 s)
 - Runs a configurable speaking timer (60 / 90 / 120 s)
+- Shows a compact "How to use this practice" micro-guide
+- Adds a finished-state reflection hint before repeating the same topic
+- Reinforces second-attempt learning with subtle repeat guidance
 - Persists your preferences and recent topic history across sessions
 - Optional auto-start: speaking timer begins automatically after prep ends
 
@@ -108,6 +112,20 @@ Edit `topics.json`. Each topic follows this schema:
 | `P`       | Start prep timer           |
 | `S`       | Start speaking timer       |
 | `R`       | Repeat current topic       |
+
+---
+
+## Learning loop
+
+The app now explicitly supports a lightweight practice cycle:
+
+1. Draw a topic
+2. Use prep time for keywords (not full sentences)
+3. Speak for 1 minute
+4. Reflect on where you hesitated or got stuck
+5. Repeat the same topic and deliver a clearer second attempt
+
+This keeps the MVP fast and minimal while improving educational value.
 
 ---
 

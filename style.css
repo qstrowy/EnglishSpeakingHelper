@@ -88,6 +88,48 @@ body {
   white-space: nowrap;
 }
 
+/* Compact practice guidance */
+.howto-panel {
+  margin-bottom: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.howto-panel summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.howto-panel summary::-webkit-details-marker { display: none; }
+.howto-panel summary::before {
+  content: '+';
+  font-family: var(--font-mono);
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--text-dim);
+}
+.howto-panel[open] summary::before { content: '−'; }
+
+.howto-steps {
+  margin-top: 10px;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: grid;
+  gap: 3px;
+}
+
+.howto-principle {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
 /* ─── Controls Panel ──────────────────────────────────────────── */
 .controls-panel {
   display: grid;
@@ -226,6 +268,29 @@ select option { background: var(--surface); }
   margin-top: 2px;
   flex-shrink: 0;
   min-width: 14px;
+}
+
+.prep-tip-block {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(107,168,214,0.2);
+  background: color-mix(in srgb, var(--surface) 93%, var(--blue));
+  border-radius: var(--radius-sm);
+}
+
+.prep-tip-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
+.prep-tip-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* ─── Timer Area ─────────────────────────────────────────────── */
@@ -375,6 +440,49 @@ select option { background: var(--surface); }
   line-height: 1;
 }
 
+.repeat-hint {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.reflection-box {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(109,191,138,0.24);
+  background: color-mix(in srgb, var(--surface) 92%, var(--green));
+}
+
+.reflection-title {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 7px;
+}
+
+.reflection-points {
+  list-style: none;
+  display: grid;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.reflection-points li::before {
+  content: '- ';
+  color: var(--green);
+}
+
+.reflection-note {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
 /* Auto-start toggle row */
 .auto-start-row {
   display: flex;
@@ -489,6 +597,9 @@ kbd {
 
   .actions { gap: 8px; }
   .btn     { padding: 12px 14px; font-size: 0.82rem; }
+  .howto-steps,
+  .prep-tip-text,
+  .reflection-points { font-size: 0.78rem; }
 }
 
 @media (max-width: 360px) {
