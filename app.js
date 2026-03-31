@@ -55,7 +55,7 @@ function loadPrefs() {
     if (!raw) return;
     const saved = JSON.parse(raw);
     if (saved.difficulty    && ['easy','medium','hard'].includes(saved.difficulty))   state.difficulty    = saved.difficulty;
-    if (saved.topicType     && ['all','opinion','description','story','comparison'].includes(saved.topicType)) state.topicType = saved.topicType;
+    if (saved.topicType     && ['all','opinion','description','story','comparison','buzzword'].includes(saved.topicType)) state.topicType = saved.topicType;
     if (saved.prepDuration  && [30,45,60].includes(Number(saved.prepDuration)))       state.prepDuration  = Number(saved.prepDuration);
     if (saved.speakDuration && [60,90,120].includes(Number(saved.speakDuration)))     state.speakDuration = Number(saved.speakDuration);
     if (typeof saved.autoStart === 'boolean')                                         state.autoStart     = saved.autoStart;
@@ -105,7 +105,7 @@ function validateTopic(t) {
     typeof t.id   === 'number'   &&
     typeof t.text === 'string'   && t.text.trim().length > 0 &&
     ['easy','medium','hard'].includes(t.difficulty) &&
-    ['opinion','description','story','comparison'].includes(t.type);
+    ['opinion','description','story','comparison','buzzword'].includes(t.type);
   if (!ok) console.warn('[SpeakingTrainer] Skipping invalid topic:', t);
   return ok;
 }
@@ -159,6 +159,11 @@ const STRUCTURE_MAP = {
     'Explain the key difference',
     'Say which you prefer and why',
   ],
+  buzzword: [
+    'Find associations',
+    'Choose your focus',
+    'Plan your answer',
+  ],
 };
 
 const PREP_TIPS = {
@@ -166,6 +171,7 @@ const PREP_TIPS = {
   description: 'Think of 3 keywords. Choose one specific example. Do not write full sentences.',
   comparison: 'Think of 3 keywords. Choose the key difference. Do not write full sentences.',
   story: 'Think of 3 keywords. Choose one specific event. Do not write full sentences.',
+  buzzword: 'Think of 3 associations. Pick one angle. Plan 3 short points.',
 };
 
 /* ══════════════════════════════════════════════════════════════

@@ -7,7 +7,7 @@ A lightweight, minimalist web app for solo English speaking practice.
 ## What it does
 
 - Draws a random topic from a local topic bank
-- Filters topics by difficulty (easy / medium / hard) and type (opinion / description / story / comparison)
+- Filters topics by difficulty (easy / medium / hard) and type (opinion / description / story / comparison / buzzword)
 - Displays a 3-step suggested speaking structure tailored to the topic type
 - Shows a dynamic prep tip by topic type (keywords-first prep guidance)
 - Runs a configurable preparation timer (30 / 45 / 60 s)
@@ -98,7 +98,7 @@ Edit `topics.json`. Each topic follows this schema:
 
 **Valid values:**
 - `difficulty`: `easy` | `medium` | `hard`
-- `type`: `opinion` | `description` | `story` | `comparison`
+- `type`: `opinion` | `description` | `story` | `comparison` | `buzzword`
 - `tags`: free-form array, not used for filtering in MVP
 
 ---
